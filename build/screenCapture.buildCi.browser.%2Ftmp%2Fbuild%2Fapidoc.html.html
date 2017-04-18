@@ -1,0 +1,312 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/asapach/peerflix-server#readme">peerflix-server (v0.1.3)</a>
+</h1>
+<h4>Streaming torrent client for node.js with web ui.</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.peerflix-server">module peerflix-server</a><ol>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">peerflix-server.</span>store</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.peerflix-server.store">module peerflix-server.store</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.peerflix-server.store.add">
+            function <span class="apidocSignatureSpan">peerflix-server.store.</span>add
+            <span class="apidocSignatureSpan">(link, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.peerflix-server.store.get">
+            function <span class="apidocSignatureSpan">peerflix-server.store.</span>get
+            <span class="apidocSignatureSpan">(infoHash)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.peerflix-server.store.list">
+            function <span class="apidocSignatureSpan">peerflix-server.store.</span>list
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.peerflix-server.store.load">
+            function <span class="apidocSignatureSpan">peerflix-server.store.</span>load
+            <span class="apidocSignatureSpan">(infoHash)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.peerflix-server.store.remove">
+            function <span class="apidocSignatureSpan">peerflix-server.store.</span>remove
+            <span class="apidocSignatureSpan">(infoHash)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">number <span class="apidocSignatureSpan">peerflix-server.store.</span>_eventsCount</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">peerflix-server.store.</span>_events</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">peerflix-server.store.</span>domain</span>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.peerflix-server" id="apidoc.module.peerflix-server">module peerflix-server</a></h1>
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.peerflix-server.store" id="apidoc.module.peerflix-server.store">module peerflix-server.store</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.peerflix-server.store.add" id="apidoc.element.peerflix-server.store.add">
+        function <span class="apidocSignatureSpan">peerflix-server.store.</span>add
+        <span class="apidocSignatureSpan">(link, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">add = function (link, callback) {
+  readTorrent(link, function (err, torrent) {
+    if (err) {
+      return callback(err);
+    }
+    var infoHash = torrent.infoHash;
+    if (torrents[infoHash]) {
+      return callback(null, infoHash);
+    }
+
+    console.log('adding ' + infoHash);
+
+    try {
+      var e = engine(torrent, options);
+      store.emit('torrent', infoHash, e);
+      torrents[infoHash] = e;
+      save();
+      callback(null, infoHash);
+    } catch (e) {
+      callback(e);
+    }
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.peerflix-server.store.get" id="apidoc.element.peerflix-server.store.get">
+        function <span class="apidocSignatureSpan">peerflix-server.store.</span>get
+        <span class="apidocSignatureSpan">(infoHash)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">get = function (infoHash) {
+  return torrents[infoHash];
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  _ = require('lodash'),
+  progress = require('./progressbar'),
+  store = require('./store');
+
+io.sockets.on('connection', function (socket) {
+  socket.on('pause', function (infoHash) {
+    console.log('pausing ' + infoHash);
+    var torrent = store.<span class="apidocCodeKeywordSpan">get</span>(infoHash);
+    if (torrent &amp;&amp; torrent.swarm) {
+      torrent.swarm.pause();
+    }
+  });
+  socket.on('resume', function (infoHash) {
+    console.log('resuming ' + infoHash);
+    var torrent = store.get(infoHash);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.peerflix-server.store.list" id="apidoc.element.peerflix-server.store.list">
+        function <span class="apidocSignatureSpan">peerflix-server.store.</span>list
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">list = function () {
+  return Object.keys(torrents).map(function (infoHash) {
+    return torrents[infoHash];
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.peerflix-server.store.load" id="apidoc.element.peerflix-server.store.load">
+        function <span class="apidocSignatureSpan">peerflix-server.store.</span>load
+        <span class="apidocSignatureSpan">(infoHash)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">load = function (infoHash) {
+  console.log('loading ' + infoHash);
+  var e = engine({ infoHash: infoHash }, options);
+  store.emit('torrent', infoHash, e);
+  torrents[infoHash] = e;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+        } else {
+          throw err;
+        }
+      } else {
+        var torrents = JSON.parse(data);
+        console.log('resuming from previous state');
+        torrents.forEach(function (infoHash) {
+          store.<span class="apidocCodeKeywordSpan">load</span>(infoHash);
+        });
+      }
+    });
+  });
+});
+
+function shutdown(signal) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.peerflix-server.store.remove" id="apidoc.element.peerflix-server.store.remove">
+        function <span class="apidocSignatureSpan">peerflix-server.store.</span>remove
+        <span class="apidocSignatureSpan">(infoHash)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">remove = function (infoHash) {
+  var torrent = torrents[infoHash];
+  torrent.destroy();
+  torrent.remove(function () {
+    torrent.emit('destroyed');
+  });
+  delete torrents[infoHash];
+  save();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+},
+get: function (infoHash) {
+  return torrents[infoHash];
+},
+remove: function (infoHash) {
+  var torrent = torrents[infoHash];
+  torrent.destroy();
+  torrent.<span class="apidocCodeKeywordSpan">remove</span>(function () {
+    torrent.emit('destroyed');
+  });
+  delete torrents[infoHash];
+  save();
+},
+list: function () {
+  return Object.keys(torrents).map(function (infoHash) {
+...</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
