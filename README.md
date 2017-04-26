@@ -1,6 +1,6 @@
 # npmdoc-peerflix-server
 
-#### api documentation for  [peerflix-server (v0.1.3)](https://github.com/asapach/peerflix-server#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-peerflix-server.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-peerflix-server) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-peerflix-server.svg)](https://travis-ci.org/npmdoc/node-npmdoc-peerflix-server)
+#### basic api documentation for  [peerflix-server (v0.1.3)](https://github.com/asapach/peerflix-server#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-peerflix-server.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-peerflix-server) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-peerflix-server.svg)](https://travis-ci.org/npmdoc/node-npmdoc-peerflix-server)
 
 #### Streaming torrent client for node.js with web ui.
 
